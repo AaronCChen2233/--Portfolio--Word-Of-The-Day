@@ -70,16 +70,31 @@ def upword(event = None):
 
 def setnowwordengword():
     global nowword, word,engword
-    wordre = re.compile('[A-Za-z]+')
-    engword = wordre.match(word[nowword]).group()
+    # wordre = re.compile('[A-Za-z]+')
+    # engword = wordre.match(word[nowword]).group()
+
+    engword = word[nowword]
 
 def tryGetWordOfTheDayInfo():
     try:
-        GetWordOfTheDayInfo()
+        # GetWordOfTheDayInfo()
+
+        GetWordOfTheDayInfoFromLocalFile()
     except:
         wordoftheday.set('網路問題稍後再試')
         t = Timer(30.0, tryGetWordOfTheDayInfo)
         t.start()
+
+
+def GetWordOfTheDayInfoFromLocalFile():
+    global word
+    f = open("All Decks.txt", "rt", encoding="utf-8")
+    fl = f.readlines();
+    word = fl
+    wordoftheday.set(word[0])
+    setnowwordengword()
+
+
 
 def SearchImage():
     global engword
@@ -136,8 +151,8 @@ searchbtn.grid(row=1, column=1)
 searchimagebtn = tk.Button(win, text='searchimage',relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=12, command=SearchImage)
 searchimagebtn.grid(row=1, column=2)
 
-speechbtn = tk.Button(win, text='speech',relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=5, command=Speech)
-speechbtn.grid(row=1, column=3)
+# speechbtn = tk.Button(win, text='speech',relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=5, command=Speech)
+# speechbtn.grid(row=1, column=3)
 # searchimagebtn.config(image=imageimg)
 
 win.lift()
