@@ -31,10 +31,10 @@ def GetWordOfTheDayInfo():
     sp = BeautifulSoup(html.text, 'html.parser')
     date = sp.select("#Blog1")
     word = date[0].find_all('h3', {'class': 'post-title entry-title'})
-    wordoftheday.set(word[0].text)
+    wordOfTheDay.set(word[0].text)
 
 def nextword(event = None):
-    global nowword, wordoftheday,word
+    global nowword, wordOfTheDay,word
     nowword+= 1
     if nowword >9:
         nowword=9
@@ -42,7 +42,7 @@ def nextword(event = None):
     wordoftheday.set(word[nowword].text)
 
 def upword(event = None):
-    global nowword, wordoftheday, word
+    global nowword, wordOfTheDay, word
     nowword-=1
     if nowword <0:
         nowword =0
@@ -52,8 +52,8 @@ def upword(event = None):
 win = BodyDragWindows()
 win.configure(background='#0e285e')
 win.geometry("+997+574")
-wordoftheday=tk.StringVar()
-englishlabel = tk.Label(win, textvariable=wordoftheday, font=("微軟正黑體", 16), padx=20, pady=10, fg="#FFFFFF", bg='#0e285e')
+wordOfTheDay=tk.StringVar()
+englishlabel = tk.Label(win, textvariable=wordOfTheDay, font=("微軟正黑體", 16), padx=20, pady=10, fg="#FFFFFF", bg='#0e285e')
 englishlabel.grid(row=0, columnspan=2)
 
 nextbtn = tk.Button(win, text=">", relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=5, command=nextword)

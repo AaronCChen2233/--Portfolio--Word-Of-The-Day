@@ -127,9 +127,13 @@ def searchImage():
 #     engine.say(engword)
 #     engine.runAndWait()
 #
-# def Speech():
-#     listenclipboard = threading.Thread(target=SpeechThread, args=())
-#     listenclipboard.start()
+def speech():
+    global engword
+    url="https://www.google.com.tw/search?q=how+to+pronounce+{}".format(engword)
+    openBrowser(url)
+
+    # listenclipboard = threading.Thread(target=SpeechThread, args=())
+    # listenclipboard.start()
 
 # def Speech():
 #     global engword
@@ -175,8 +179,8 @@ searchbtn.grid(row=1, column=1)
 searchimagebtn = tk.Button(win, text='searchimage', relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=12, command=searchImage)
 searchimagebtn.grid(row=1, column=2)
 
-# speechbtn = tk.Button(win, text='speech',relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=5, command=Speech)
-# speechbtn.grid(row=1, column=3)
+speechbtn = tk.Button(win, text='speech',relief=FLAT, fg="#FFFFFF", bg='#0e285e', bd=0, width=5, command=speech)
+speechbtn.grid(row=1, column=3)
 # searchimagebtn.config(image=imageimg)
 
 win.lift()
